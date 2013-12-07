@@ -81,14 +81,15 @@ examples there as requests come in.
 
 ####Create Table
 This creates a single table with one column ID.
-        $this->create_table("EXAMPLE_TABLE");
+        <pre>$this->create_table("EXAMPLE_TABLE");</pre>
 
 ####Adding columns to tables. 
 This is how to create a table with multiple columns.
+        <pre>
         $this->create_table("EXAMPLE_TABLE")
         ->column("EXAMPLE_COLUMN_1", "integer")
         ->column("EXAMPLE_COLUMN_2", "varchar");
-  
+        </pre>
 Different Column types supported by Ladder
    * binary
    * varbinary
