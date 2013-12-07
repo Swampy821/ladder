@@ -18,7 +18,7 @@ class Test1_Migration_00002 extends Migration {
                     ->column('COLUMN_5', "varchar",array( ))
                     ->drop_column("COLUMN_2")
                     ->alter_column("TEST_COL_2",'varchar');
-            
+          
             
                      $insert_id = $this->table('users')
                     ->insert(array(
