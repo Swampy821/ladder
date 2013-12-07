@@ -81,13 +81,13 @@ examples there as requests come in.
 
 ####Create Table
 This creates a single table with one column ID
-    $this->create_table("EXAMPLE_TABLE");
+        $this->create_table("EXAMPLE_TABLE");
 
 ####Adding columns to tables. 
 This is how to create a table with multiple columns
-    $this->create_table("EXAMPLE_TABLE")
-      ->column("EXAMPLE_COLUMN_1", "integer")
-      ->column("EXAMPLE_COLUMN_2", "varchar");
+        $this->create_table("EXAMPLE_TABLE")
+        ->column("EXAMPLE_COLUMN_1", "integer")
+        ->column("EXAMPLE_COLUMN_2", "varchar");
 
   
 Different Column types supported by Ladder
@@ -121,26 +121,26 @@ Each column has a set of defaults for it which can be modified within the `ladde
 Assigning different column options.
 The options for columns are setting using an array in the 3rd argument of the column function. 
 
-    $this->table("EXAMPLE_TABLE")
-     ->column("EXAMPLE_COLUMN_3","varchar",array('default'=>0, 'null'=>false, 'limit'=>255));
+        $this->table("EXAMPLE_TABLE")
+         ->column("EXAMPLE_COLUMN_3","varchar",array('default'=>0, 'null'=>false, 'limit'=>255));
 This example also uses the `->table` method. This allows you to select the table you want to modify.
 
 ####Altering Columns
 Altering columns is a lot like adding them you just use the `->alter_column` method.
-   $this->table("EXAMPLE_TABLE")
-   ->alter_column("EXAMPLE_COLUMN_3","Integer",array('default'=>1,`null`=>true,'limit'=>8));
+        $this->table("EXAMPLE_TABLE")
+        ->alter_column("EXAMPLE_COLUMN_3","Integer",array('default'=>1,`null`=>true,'limit'=>8));
 
 ####Dropping a Column
 You drop a column using the `->drop_column()` method.
-    $this->table("EXAMPLE_TABLE")->drop_column("EXAMPLE_COLUMN_3");
+        $this->table("EXAMPLE_TABLE")->drop_column("EXAMPLE_COLUMN_3");
 
 ####Dropping a Table
 You drop a table using the `->drop()` method. 
-    $this->table("EXAMPLE_TABLE")->drop();
+        $this->table("EXAMPLE_TABLE")->drop();
 
 
 ####Running SQL statement. 
 To run an SQL statement you use `->db->query()`
-    $this->db->query("DELETE FROM EXAMPLE_TABLE WHERE ID=1");
+        $this->db->query("DELETE FROM EXAMPLE_TABLE WHERE ID=1");
 
     
