@@ -11,9 +11,27 @@ class Test1_Migration_00002 extends Migration {
 
 	public function up() {
 	    $this->create_table('Test_Table')
-                        ->column('COLUMN_1', "String",array( ))
-                        ->column("TEST_COL_2",'Integer');
-                
+                        ->column('COLUMN_1', "varchar",array( ))
+                    ->column('COLUMN_2', "varchar",array( ))
+                    ->column('COLUMN_3', "varchar",array( ))
+                    ->column('COLUMN_4', "varchar",array( ))
+                    ->column('COLUMN_5', "varchar",array( ))
+                    ->drop_column("COLUMN_2")
+                    ->alter_column("TEST_COL_2",'varchar');
+            
+            
+                     $insert_id = $this->table('users')
+                    ->insert(array(
+                        'email' => 'example@example.tld',
+                        'password' => NULL,
+                    ))
+                    ->insert_id;
+                             
+                    $this->db->query("SELECT * FROM CP_TEST WHERE ID='1' and name='test'");
+                    
+                    $this->db->query("SELECT * FROM CP_TEST WHERE ID='1' and name='test'");
+            
+                      $this->table("Table2")->drop();
                       $this->create_table("ANOTHER TABLE")->column("COLUMN 1", "Int");
                      
 	}
