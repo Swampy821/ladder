@@ -341,6 +341,7 @@ class sql {
 
 	/**
 	 * Add in defaults if they're required.
+                    * @todo Add Comments 
 	 */
 	private static function parsefieldoptions($type, $options) {
 		if ($type == 'string') {

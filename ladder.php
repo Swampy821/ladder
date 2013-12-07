@@ -9,7 +9,7 @@ $application_path = implode(DIRECTORY_SEPARATOR, array(
 ));
 
 // The system path we actually want to resolve the symlink.
-$system_path = __DIR__ . '/system';
+$system_path = __DIR__ . '/ladder/system';
 
 if (realpath($application_path) === FALSE) {
 	echo 'Missing application path: ', $application_path, PHP_EOL;

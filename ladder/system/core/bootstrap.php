@@ -25,6 +25,7 @@ $params = array(
 	'verbose' => Config::item('config.verbose', FALSE),
 	'force' => FALSE,
 	'version' => FALSE,
+    
 );
 
 // Grab all the params from the command-line.

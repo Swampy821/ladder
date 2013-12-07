@@ -12,7 +12,7 @@ $config['default'] = array(
 	'password'	=> '',
 
 	// A database, or array of databases to apply migrations to.
-	'database'	=> 'sc_master',
+	'database'	=> 'dbase',
 
 	// Optional. Use a compressed connection?
 	// 'compress' => TRUE,

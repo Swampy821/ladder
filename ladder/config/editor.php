@@ -6,8 +6,8 @@
  */
 $config = array(
 	// Either a full path, or something on the PATH.
-	'editor' => 'gvim',
+	'editor' => 'vim',
 
 	// Automatically open new migrations when created?
-	'auto-edit' => TRUE,
+	'auto-edit' => false,
 );

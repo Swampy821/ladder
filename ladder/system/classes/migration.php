@@ -54,13 +54,13 @@ abstract class Migration {
 		if ((bool) $migration_file) {
 			require_once($migration_file);
 			$migration_class = Migration::class_name($migration_file);
-		}
+                        
+                }
 
 		// If we got a class name, instantiate.
 		if ((bool) $migration_class) {
 			$instance = new $migration_class($database);
 		}
-
 		return $instance;
 	}
 
