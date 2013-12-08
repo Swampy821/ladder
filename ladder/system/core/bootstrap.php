@@ -25,7 +25,7 @@ $params = array(
 	'verbose' => Config::item('config.verbose', FALSE),
 	'force' => FALSE,
 	'version' => FALSE,
-    
+   	'explain' => FALSE 
 );
 
 // Grab all the params from the command-line.
@@ -112,6 +112,7 @@ Usage: php ladder.php <command> [options]
 	--simulate                - don't run the migration, but do update the migrations table.
 	--database=<name>         - set the database name to run against (bypassing the config).
 	--run-tests               - run any test() methods in the migrations that are processed.
+	--explain                 - explains migration ebing run (add only)
 	--show-sql                - output any sql queries before they are executed.
 	--verbose                 - include extra output (only used by "status" at present).
 	--force                   - force operations to run (applies to 'add', 'remove', and 'reapply').

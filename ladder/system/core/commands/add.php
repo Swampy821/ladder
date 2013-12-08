@@ -60,7 +60,19 @@ while ($db->next_database()) {
 		if ($success OR $params['force']) {
 			try {
 				$db->add_migration($migration_id);
-			} catch (Exception $e) {
+				if($params['explain'])
+				{
+				    $migration_id = (int) $params['migrate-to'];
+                                                                    //Define explain as a migration_explain object. 
+                                                                    $explain = new migration_explain;
+                                                                    //Get the source array by the id.
+                                                                    $source = $explain->get_source_file($migration_id);
+                                                                    //Get the explained statement from the source array. 
+                                                                    $explain_statement = $explain->explain_migration($source, true);
+                                                                    //Echo the explained statement. 
+                                                                    echo $explain_statement;
+				}
+				} catch (Exception $e) {
 				echo "\t", 'Error: ', $e->getMessage(), "\n";
 			}
 		}

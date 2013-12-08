@@ -107,10 +107,11 @@ class migration_explain extends Migration{
      * 
      * @
      * @param Array $source Source array which is the migration file exploded by ";". 
+     * @param Boolean $add Is migration run through the add or not. 
      * @todo Echo out options for column creation
      * @return String String to echo to CLI.
      */
-    public function explain_migration(array $source)
+    public function explain_migration(array $source, $add=false)
     {
         //Define empty $explained_string to be added to. 
         $explained_string = '';
@@ -144,7 +145,12 @@ class migration_explain extends Migration{
                         //Check to see if command has "create_table" in it. 
                         if(strpos(strtolower($ind), "create_table")!==false) {
                             //Add a light green Create Table to the $explained_string.
-                            $explained_string .= $this->change_color("\n Create table \"".$table."\"\n", 'green-bold');
+                            if($add) {
+                                    $explained_string .= $this->change_color("\n Created table \"".$table."\"\n", 'green-bold');
+                            }else {
+                                    $explained_string .= $this->change_color("\n Create table \"".$table."\"\n", 'green-bold');
+                            }
+                            
                         }
                         //Column Return
                         //Check to see if command is column
@@ -158,7 +164,12 @@ class migration_explain extends Migration{
                                 //Get teh column type and store it into $column_type variable. 
                                 $column_type = $col_array[3];
                                 //Add a green "Add Column" string to $explained_string. 
-                                $explained_string .= $this->change_color(" Add column \"".$column_name."\" to \"".$table."\" with the type \"".$column_type."\"\n", 'green');
+                                if($add) {
+                                        $explained_string .= $this->change_color(" Added column \"".$column_name."\" to \"".$table."\" with the type \"".$column_type."\"\n", 'green');
+                                }else {
+                                        $explained_string .= $this->change_color(" Add column \"".$column_name."\" to \"".$table."\" with the type \"".$column_type."\"\n", 'green');
+                                }
+                                
                             }else{
                                 //If table is not set, let them know they have an error in their migration. 
                                 return "\n You have an error in your migration. Please address this immediately!\n\n";
@@ -176,7 +187,12 @@ class migration_explain extends Migration{
                                 //Get the column type and set it in the $column_type variable. 
                                 $column_type = $col_array[3];
                                 //Return a yellow "Alter Column" string. 
-                                $explained_string .=$this->change_color(" Alter column \"".$column_name."\" in \"".$table."\" to type \"".$column_type."\"\n", 'yellow');
+                                if($add) {
+                                        $explained_string .=$this->change_color(" Altered column \"".$column_name."\" in \"".$table."\" to type \"".$column_type."\"\n", 'yellow');
+                                }else {
+                                        $explained_string .=$this->change_color(" Alter column \"".$column_name."\" in \"".$table."\" to type \"".$column_type."\"\n", 'yellow');
+                                }
+                                
                             }else{
                                 //If the table is not set, let the user know they have an error in their migration. 
                                 return "\n You have an error in your migration. Please address this immediately!\n\n";
@@ -188,7 +204,12 @@ class migration_explain extends Migration{
                             //Check to make sure the table is set prior to running drop. 
                             if($table!='') {
                                 //Return a red "drop table" string. 
-                                $explained_string .= $this->change_color("\n Drop table \"".$table."\" \n",'red');  
+                                if($add) {
+                                        $explained_string .= $this->change_color("\n Dropped table \"".$table."\" \n",'red');  
+                                }else {
+                                        $explained_string .= $this->change_color("\n Drop table \"".$table."\" \n",'red');
+                                }
+                                
                             }else{
                                 //If the table is not set, let the user know they have an error in their migration. 
                                 return "\n You have an error in your migration. Please address this immediately!\n\n";
@@ -204,7 +225,11 @@ class migration_explain extends Migration{
                                 //Get the column name that is being dropped. 
                                 $column_name = $col_array[1];
                                 //Rern a red "drop column" string. 
-                                $explained_string .= $this->change_color(" Drop column \"".$column_name."\" from \"".$table."\" \n",'red');  
+                                if($add) {
+                                        $explained_string .= $this->change_color(" Droped column \"".$column_name."\" from \"".$table."\" \n",'red');  
+                                }else {
+                                        $explained_string .= $this->change_color(" Drop column \"".$column_name."\" from \"".$table."\" \n",'red');
+                                }
                             }else{
                                 //If the table is not set, let the user know they have an error in their migration. 
                                 return "\n You have an error in your migration. Please address this immediately!\n\n";
@@ -234,7 +259,11 @@ class migration_explain extends Migration{
                                 $sql_string = implode("\'", $sql_array)."\"";
                            }
                            //Return a purple Run SQL string, 
-                           $explained_string .= "\n Run SQL Statement ".$this->change_color($sql_string,'purple')."\n";
+                           if($add) {
+                                $explained_string .= "\n Ran SQL Statement ".$this->change_color($sql_string,'purple')."\n";
+                           }else {
+                                $explained_string .= "\n Run SQL Statement ".$this->change_color($sql_string,'purple')."\n";
+                           }
                         }
                         //Insert Return
                         //Check to see if the command has insert in it.
@@ -254,7 +283,11 @@ class migration_explain extends Migration{
                                 //Check to make sure the array has elements in it. 
                                 if(count($col_arr)) {
                                         //Add a cyan "Insert into table" string into explained_string
-                                        $explained_string .= $this->change_color("\n Insert into \"".$table."\"\n",'cyan');
+                                        if($add) {
+                                                $explained_string .= $this->change_color("\n Inserted into \"".$table."\"\n",'cyan');
+                                        }else{
+                                                $explained_string .= $this->change_color("\n Insert into \"".$table."\"\n",'cyan');
+                                        }
                                         //Loop through the $col_arr array.
                                         foreach($col_arr as $key=>$value) {
                                                 //Add a line for each column filled to $explained_string. 
@@ -282,7 +315,7 @@ class migration_explain extends Migration{
             $explained_string = "Migration Empty";
         }
         //Add a closing line. 
-        $explained_string.= "n---------------------------------\n";
+        $explained_string.= "\n---------------------------------\n";
         //Add an opening line
         $explained_string = "\n---------------------------------\n".$explained_string;
         //Return the explained string. 
