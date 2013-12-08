@@ -120,14 +120,15 @@ Assigning different column options.
 The options for columns are setting using an array in the 3rd argument of the column function. 
 <pre>$this->table("EXAMPLE_TABLE")
 ->column("EXAMPLE_COLUMN_3","varchar",
-               array('default'=>0, 'null'=>false, 'limit'=>255));
+array('default'=>0, 'null'=>false, 'limit'=>255));
 </pre>
 This example also uses the `->table` method. This allows you to select the table you want to modify.
 
 ####Altering Columns
 Altering columns is a lot like adding them you just use the `->alter_column` method.
 <pre>$this->table("EXAMPLE_TABLE")
-->alter_column("EXAMPLE_COLUMN_3","Integer",array('default'=>1,`null`=>true,'limit'=>8));
+->alter_column("EXAMPLE_COLUMN_3","Integer",
+array('default'=>1,`null`=>true,'limit'=>8));
 </pre>
 ####Dropping a Column
 You drop a column using the `->drop_column()` method.
