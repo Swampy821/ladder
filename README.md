@@ -21,7 +21,6 @@ method should do the opposite to its counterpart `up()` method. Dropping a
 column instead of adding it, etc.
 
 ## Cool. How do I use it?
-
 If you're reading this file, you've already got it (or you're reading it on Github/BitBucket…).
 Have a look in the config/ directory. Copy each file ending in ".sample", and
 remove the ".sample" part. Edit your copies of the files, plugging in your own
@@ -120,7 +119,8 @@ Each column has a set of defaults for it which can be modified within the `ladde
 Assigning different column options.
 The options for columns are setting using an array in the 3rd argument of the column function. 
 <pre>$this->table("EXAMPLE_TABLE")
-->column("EXAMPLE_COLUMN_3","varchar",array('default'=>0, 'null'=>false, 'limit'=>255));
+->column("EXAMPLE_COLUMN_3","varchar",
+               array('default'=>0, 'null'=>false, 'limit'=>255));
 </pre>
 This example also uses the `->table` method. This allows you to select the table you want to modify.
 
