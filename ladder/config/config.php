@@ -8,6 +8,7 @@ $config = array(
 	'run-tests' => FALSE,
 	'show-sql' => FALSE,
 	'verbose' => FALSE,
+        'explain_colors'=>FALSE,
 
 	// Use timestamps instead of incrementing ids?
 	// This option make working in a team on multiple branches less likely to cause

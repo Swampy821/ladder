@@ -72,6 +72,10 @@ class migration_explain extends Migration{
             }
             //Apply Color to string
             $new_string = $color_start.$string.$color_end;
+            if(Config::item('config.explain_colors')===FALSE)
+            {
+                $new_string = $string;
+            }
             //Return string.
             return $new_string;
     }
