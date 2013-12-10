@@ -303,8 +303,26 @@ class migration_explain extends Migration{
                             }else{
                                 //If table is not set return an error. 
                                  return "\n You have an error in your migration. Please address this immediately!\n\n";   //Escape on error
-                            }
-                        }                        
+                            }   
+                        }     
+                        
+                         //Insert Return
+                        //Check to see if the command has insert in it.
+                        if(strpos(strtolower($ind),"index(")===0) {
+                            //Check to make sure the table is set. 
+                            if($table!='') {
+                                $col_array = $this->explode_multi($ind, array("'",'"'));
+                                $indexed_column = $col_array[1];
+                                if($add) {
+                                    $explained_string .= $this->change_color("\n indexed column \"".$indexed_column."\"\n",'green');
+                                }else {
+                                    $explained_string .= $this->change_color("\n index column \"".$indexed_column."\"\n",'green');
+                                }
+                            }else{
+                                //If table is not set return an error. 
+                                 return "\n You have an error in your migration. Please address this immediately!\n\n";   //Escape on error
+                            }   
+                        }   
                     }
                 }
             }
